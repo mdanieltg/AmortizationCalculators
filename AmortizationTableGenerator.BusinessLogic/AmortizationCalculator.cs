@@ -14,7 +14,7 @@ public static class AmortizationCalculator
         Frequency frequency = Frequency.Monthly)
     {
         if (interestRate < 0) throw new ArgumentException("The interest rate cannot be lower than zero.");
-        if (interestRate == 0) return ZeroInterest(principal, terms, frequency);
+        if (interestRate == 0) return ZeroInterest(principal, terms);
 
         var i = interestRate;
         var n = GetValue(frequency);
@@ -24,16 +24,10 @@ public static class AmortizationCalculator
         return i * principal / (n * step);
     }
 
-    private static double ZeroInterest(double principal, int terms, Frequency frequency)
-    {
-        var n = GetValue(frequency);
-        var t = terms / n;
-        return principal / (n * t);
-    }
+    private static double ZeroInterest(double principal, int terms) => principal / terms;
 
-    internal static double GetValue(Frequency frequency)
-    {
-        return frequency switch
+    public static double GetValue(Frequency frequency) =>
+        frequency switch
         {
             Frequency.Weekly => 52,
             Frequency.Biweekly => 24,
@@ -45,5 +39,4 @@ public static class AmortizationCalculator
             Frequency.Annual => 1,
             _ => throw new ArgumentOutOfRangeException(nameof(frequency), frequency, null)
         };
-    }
 }
