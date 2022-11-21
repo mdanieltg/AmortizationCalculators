@@ -2,8 +2,6 @@
 
 public enum Frequency
 {
-    Weekly,
-    Biweekly,
     Monthly,
     Bimonthly,
     Quarterly,

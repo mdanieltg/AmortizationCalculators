@@ -1,10 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationTableGenerator.BusinessLogic", "AmortizationTableGenerator.BusinessLogic\AmortizationTableGenerator.BusinessLogic.csproj", "{E9EE37F7-EEBB-4AFE-8F67-058DB7A82A38}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C9B932B-6C76-4757-ACA4-969598F87785}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationTableGenerator.BusinessLogicTests", "tests\AmortizationTableGenerator.BusinessLogicTests\AmortizationTableGenerator.BusinessLogicTests.csproj", "{6EE602C1-1D6B-449E-9EDE-7EC215DEC7DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationTableGenerator.App", "AmortizationTableGenerator.App\AmortizationTableGenerator.App.csproj", "{820B8546-2C46-4436-AAD8-FB8230648E3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationTableGenerator.BusinessLogic", "AmortizationTableGenerator.BusinessLogic\AmortizationTableGenerator.BusinessLogic.csproj", "{6A980BC3-3D75-454A-BE4F-51011E44CD2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,14 +14,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E9EE37F7-EEBB-4AFE-8F67-058DB7A82A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9EE37F7-EEBB-4AFE-8F67-058DB7A82A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9EE37F7-EEBB-4AFE-8F67-058DB7A82A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9EE37F7-EEBB-4AFE-8F67-058DB7A82A38}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6EE602C1-1D6B-449E-9EDE-7EC215DEC7DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6EE602C1-1D6B-449E-9EDE-7EC215DEC7DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EE602C1-1D6B-449E-9EDE-7EC215DEC7DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EE602C1-1D6B-449E-9EDE-7EC215DEC7DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820B8546-2C46-4436-AAD8-FB8230648E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820B8546-2C46-4436-AAD8-FB8230648E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820B8546-2C46-4436-AAD8-FB8230648E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820B8546-2C46-4436-AAD8-FB8230648E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A980BC3-3D75-454A-BE4F-51011E44CD2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A980BC3-3D75-454A-BE4F-51011E44CD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A980BC3-3D75-454A-BE4F-51011E44CD2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A980BC3-3D75-454A-BE4F-51011E44CD2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6EE602C1-1D6B-449E-9EDE-7EC215DEC7DA} = {7C9B932B-6C76-4757-ACA4-969598F87785}

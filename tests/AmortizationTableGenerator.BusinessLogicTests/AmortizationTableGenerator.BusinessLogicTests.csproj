@@ -25,4 +25,8 @@
       <ProjectReference Include="..\..\AmortizationTableGenerator.BusinessLogic\AmortizationTableGenerator.BusinessLogic.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Frequency" />
+    </ItemGroup>
+
 </Project>
