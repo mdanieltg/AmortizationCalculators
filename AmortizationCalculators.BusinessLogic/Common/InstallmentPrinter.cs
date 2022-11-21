@@ -1,4 +1,4 @@
-﻿namespace AmortizationTableGenerator.BusinessLogic.Common;
+﻿namespace AmortizationCalculators.BusinessLogic.Common;
 
 public class InstallmentPrinter
 {

@@ -2,11 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C9B932B-6C76-4757-ACA4-969598F87785}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationTableGenerator.BusinessLogicTests", "tests\AmortizationTableGenerator.BusinessLogicTests\AmortizationTableGenerator.BusinessLogicTests.csproj", "{6EE602C1-1D6B-449E-9EDE-7EC215DEC7DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationCalculators.BusinessLogicTests", "tests\AmortizationCalculators.BusinessLogicTests\AmortizationCalculators.BusinessLogicTests.csproj", "{6EE602C1-1D6B-449E-9EDE-7EC215DEC7DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationTableGenerator.App", "AmortizationTableGenerator.App\AmortizationTableGenerator.App.csproj", "{820B8546-2C46-4436-AAD8-FB8230648E3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationCalculators.App", "AmortizationCalculators.App\AmortizationCalculators.App.csproj", "{820B8546-2C46-4436-AAD8-FB8230648E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationTableGenerator.BusinessLogic", "AmortizationTableGenerator.BusinessLogic\AmortizationTableGenerator.BusinessLogic.csproj", "{6A980BC3-3D75-454A-BE4F-51011E44CD2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationCalculators.BusinessLogic", "AmortizationCalculators.BusinessLogic\AmortizationCalculators.BusinessLogic.csproj", "{6A980BC3-3D75-454A-BE4F-51011E44CD2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

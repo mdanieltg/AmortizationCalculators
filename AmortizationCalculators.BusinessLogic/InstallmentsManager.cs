@@ -1,8 +1,7 @@
 ﻿using System.Text;
-using AmortizationTableGenerator.BusinessLogic.Calculators;
-using AmortizationTableGenerator.BusinessLogic.Common;
+using AmortizationCalculators.BusinessLogic.Common;
 
-namespace AmortizationTableGenerator.BusinessLogic;
+namespace AmortizationCalculators.BusinessLogic;
 
 public class InstallmentsManager
 {

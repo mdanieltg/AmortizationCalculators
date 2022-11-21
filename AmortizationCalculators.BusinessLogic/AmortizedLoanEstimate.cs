@@ -1,7 +1,7 @@
 ﻿using System.Text;
-using AmortizationTableGenerator.BusinessLogic.Common;
+using AmortizationCalculators.BusinessLogic.Common;
 
-namespace AmortizationTableGenerator.BusinessLogic.Calculators;
+namespace AmortizationCalculators.BusinessLogic;
 
 public class AmortizedLoanEstimate
 {
@@ -69,7 +69,7 @@ public class AmortizedLoanEstimate
         sb.Append($"Principal: {Principal,12:C}");
         sb.AppendLine($"         Rate: {InterestRate,8:P} {RateType.Word().ToLowerInvariant()}");
         sb.Append($" Interest: {TotalInterest,12:C}");
-        sb.AppendLine($"        Terms: {Terms,6:N0} ({PaymentFrequency.Word().ToLowerInvariant()})"); // TODO: Display unit of time
+        sb.AppendLine($"        Terms: {Terms,6:N0} ({PaymentFrequency.Word().ToLowerInvariant()})");
         sb.Append($"    Total: {Total,12:C}");
         sb.Append($"  Installment: {EquatedMonthlyInstallment,12:C}");
 

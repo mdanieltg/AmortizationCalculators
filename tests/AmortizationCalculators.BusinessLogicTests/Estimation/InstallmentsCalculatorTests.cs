@@ -1,4 +1,4 @@
-﻿namespace AmortizationTableGenerator.BusinessLogicTests.Estimation;
+﻿namespace AmortizationCalculators.BusinessLogicTests.Estimation;
 
 public class InstallmentsCalculatorTests
 {

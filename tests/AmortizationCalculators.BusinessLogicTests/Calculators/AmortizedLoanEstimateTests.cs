@@ -1,7 +1,6 @@
-﻿using AmortizationTableGenerator.BusinessLogic;
-using AmortizationTableGenerator.BusinessLogic.Calculators;
+﻿using AmortizationCalculators.BusinessLogic;
 
-namespace AmortizationTableGenerator.BusinessLogicTests.Calculators;
+namespace AmortizationCalculators.BusinessLogicTests.Calculators;
 
 public class AmortizedLoanEstimateTests
 {

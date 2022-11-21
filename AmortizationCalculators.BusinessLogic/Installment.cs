@@ -1,4 +1,4 @@
-﻿namespace AmortizationTableGenerator.BusinessLogic;
+﻿namespace AmortizationCalculators.BusinessLogic;
 
 public class Installment
 {
