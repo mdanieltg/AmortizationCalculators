@@ -20,11 +20,12 @@ public class Printer : IPrinter
         sb.AppendLine();
 
         sb.Append($"Principal: {_estimate.Principal,12:C}");
-        sb.AppendLine($"         Rate: {_estimate.InterestRate,8:P} {_estimate.RateType.Word().ToLowerInvariant()}");
+        sb.AppendLine($"           Rate: {_estimate.InterestRate,8:P} annual");
         sb.Append($" Interest: {_estimate.TotalInterest,12:C}");
-        sb.AppendLine($"        Terms: {_estimate.Terms,6:N0} ({_estimate.PaymentFrequency.Word().ToLowerInvariant()})");
+        sb.AppendLine($"          Terms: {_estimate.Terms,6:N0}");
         sb.Append($"    Total: {_estimate.Total,12:C}");
-        sb.Append($"  Installment: {_estimate.EquatedMonthlyInstallment,12:C}");
+        sb.Append($"    Installment: {_estimate.EquatedMonthlyInstallment,8:C}");
+        sb.Append($" {_estimate.PaymentFrequency.Word().ToLowerInvariant()}");
 
         return sb.ToString();
     }

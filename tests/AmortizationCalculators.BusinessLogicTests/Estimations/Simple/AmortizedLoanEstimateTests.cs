@@ -10,20 +10,20 @@ public class AmortizedLoanEstimateTests
     [SetUp]
     public void SetUp()
     {
-        _estimate = AmortizedLoanEstimate.CreateEstimate(699, 0.15, Frequency.Annual, 6, Frequency.Monthly);
+        _estimate = AmortizedLoanEstimate.CreateEstimate(699, 0.15, 6, Frequency.Monthly);
     }
 
-    [TestCase(12_000, 0.025, Frequency.Annual, 12, Frequency.Monthly, 1_013.5933, 163.12)]
-    [TestCase(93_125, 0.35, Frequency.Annual, 10, Frequency.Bimonthly, 12_552.9842, 32_404.8418)]
-    [TestCase(6_653, 0.17125, Frequency.Quarterly, 6, Frequency.Quarterly, 1_859.6659, 4_504.9951)]
-    [TestCase(152_056, 0.223, Frequency.Quarterly, 20, Frequency.Quadrimestral, 45_460.549, 757_154.9790)]
-    [TestCase(5_600_281, 0.02641666666667, Frequency.Monthly, 180, Frequency.Biannual, 887_644.5385, 154_175_735.9305)]
-    [TestCase(1_358_600, 0.4782, Frequency.Annual, 12, Frequency.Annual, 655_706.8863, 6_509_882.6354)]
-    public void CalculateEquatedMonthlyPayment(double principal, double rate, Frequency rateType, int terms,
-        Frequency paymentFrequency, double emi, double totalInterest)
+    [TestCase(12_000, 0.025, 12, Frequency.Monthly, 1_013.5933, 163.12)]
+    [TestCase(93_125, 0.35, 10, Frequency.Bimonthly, 12_552.9842, 32_404.8418)]
+    [TestCase(6_653, 0.685, 6, Frequency.Quarterly, 1_859.6659, 4_504.9951)]
+    [TestCase(152_056, 0.892, 20, Frequency.Quadrimestral, 45_460.549, 757_154.9790)]
+    [TestCase(5_600_281, 0.317, 180, Frequency.Biannual, 887_644.5385, 154_175_735.9305)]
+    [TestCase(1_358_600, 0.4782, 12, Frequency.Annual, 655_706.8863, 6_509_882.6354)]
+    public void CalculateEquatedMonthlyPayment(double principal, double rate, int terms, Frequency paymentFrequency,
+        double emi, double totalInterest)
     {
         // Act
-        var estimate = AmortizedLoanEstimate.CreateEstimate(principal, rate, rateType, terms, paymentFrequency);
+        var estimate = AmortizedLoanEstimate.CreateEstimate(principal, rate, terms, paymentFrequency);
 
         // Assert
         Assert.AreEqual(emi, estimate.EquatedMonthlyInstallment, 4);
