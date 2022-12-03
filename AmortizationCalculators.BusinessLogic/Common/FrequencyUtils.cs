@@ -15,4 +15,18 @@ public static class FrequencyUtils
             _ => throw new ArgumentOutOfRangeException(nameof(frequency), frequency, null)
         };
     }
+
+    public static string Word(this Frequency frequency)
+    {
+        return frequency switch
+        {
+            Frequency.Monthly => "Monthly",
+            Frequency.Bimonthly => "Bimonthly",
+            Frequency.Quarterly => "Quarterly",
+            Frequency.Quadrimestral => "Quadrimestral",
+            Frequency.Biannual => "Biannual",
+            Frequency.Annual => "Annual",
+            _ => throw new ArgumentOutOfRangeException(nameof(frequency), frequency, null)
+        };
+    }
 }

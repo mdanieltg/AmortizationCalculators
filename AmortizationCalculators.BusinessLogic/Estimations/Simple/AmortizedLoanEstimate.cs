@@ -1,10 +1,12 @@
 ﻿using System.Text;
 using AmortizationCalculators.BusinessLogic.Common;
 
-namespace AmortizationCalculators.BusinessLogic;
+namespace AmortizationCalculators.BusinessLogic.Estimations.Simple;
 
 public class AmortizedLoanEstimate
 {
+    private readonly Dictionary<int, Installment> _installments = new();
+
     private AmortizedLoanEstimate()
     {
     }
@@ -45,7 +47,7 @@ public class AmortizedLoanEstimate
         var b = rate * a / (a - 1);
         var emi = principal * b;
 
-        return new AmortizedLoanEstimate
+        var amortizedLoanEstimate = new AmortizedLoanEstimate
         {
             EstimationDate = DateTime.Now,
             Principal = principal,
@@ -57,22 +59,47 @@ public class AmortizedLoanEstimate
             TotalInterest = emi * terms - principal,
             Total = emi * terms
         };
+        amortizedLoanEstimate.GenerateInstallments();
+
+        return amortizedLoanEstimate;
     }
 
-    public string GetInformation()
+    private void GenerateInstallments()
     {
-        var sb = new StringBuilder();
+        var principal = Principal;
+        var rate = InterestRate / RateType.GetValue() * PaymentFrequency.GetValue();
 
-        sb.AppendLine($"Estimation date: {EstimationDate:D}");
-        sb.AppendLine();
+        var installmentNumber = 1;
+        while (installmentNumber <= Terms)
+        {
+            var payment = EquatedMonthlyInstallment;
+            var interestPayment = principal * rate;
+            var principalPayment = payment - interestPayment;
+            var newPrincipal = principal - principalPayment;
 
-        sb.Append($"Principal: {Principal,12:C}");
-        sb.AppendLine($"         Rate: {InterestRate,8:P} {RateType.Word().ToLowerInvariant()}");
-        sb.Append($" Interest: {TotalInterest,12:C}");
-        sb.AppendLine($"        Terms: {Terms,6:N0} ({PaymentFrequency.Word().ToLowerInvariant()})");
-        sb.Append($"    Total: {Total,12:C}");
-        sb.Append($"  Installment: {EquatedMonthlyInstallment,12:C}");
+            var installment = new Installment
+            {
+                Rate = rate,
+                InstallmentNumber = installmentNumber,
+                Principal = principal,
+                Payment = payment,
+                PrincipalPayment = principalPayment,
+                InterestPayment = interestPayment,
+                NewPrincipal = newPrincipal
+            };
+            principal = newPrincipal;
 
-        return sb.ToString();
+            _installments.Add(installmentNumber++, installment);
+        }
     }
+
+    public Installment GetInstallment(int installmentNumber)
+    {
+        if (installmentNumber <= 0 || installmentNumber > Terms)
+            throw new ArgumentException($"The value must be greater than zero and equal to or less than {Terms}",
+                nameof(installmentNumber));
+
+        return _installments[installmentNumber];
+    }
+
 }
