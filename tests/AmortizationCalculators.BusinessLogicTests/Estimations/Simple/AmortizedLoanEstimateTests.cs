@@ -26,53 +26,40 @@ public class AmortizedLoanEstimateTests
         var estimate = AmortizedLoanEstimate.CreateEstimate(principal, rate, terms, paymentFrequency);
 
         // Assert
-        Assert.AreEqual(emi, estimate.EquatedMonthlyInstallment, 4);
-        Assert.AreEqual(totalInterest, estimate.TotalInterest, 4);
+        Assert.That(estimate.EquatedMonthlyInstallment, Is.EqualTo(emi).Within(0.00009));
+        Assert.That(estimate.TotalInterest, Is.EqualTo(totalInterest).Within(0.00009));
     }
 
     [Test]
     public void GetInstallment_ThrowsArgumentException_WhenNumberIsEqualToOrLessThanZero()
     {
         // Assert
-        Assert.Throws<ArgumentException>(() => _estimate.GetInstallment(-1));
-        Assert.Throws<ArgumentException>(() => _estimate.GetInstallment(0));
+        Assert.That(() => _estimate.GetInstallment(-1), Throws.ArgumentException);
+        Assert.That(() => _estimate.GetInstallment(0), Throws.ArgumentException);
     }
 
     [Test]
     public void GetInstallment_ThrowsArgumentException_WhenInstallmentNumberDoesNotExist()
     {
         // Assert
-        Assert.Throws<ArgumentException>(() => _estimate.GetInstallment(7));
+        Assert.That(() => _estimate.GetInstallment(7), Throws.ArgumentException);
     }
 
-    [Test]
-    public void GetInstallment_ShouldBeSuccessful_WhenInstallmentNumberDoesExist()
+    [TestCase(1, 699, 121.65, 112.91, 8.74, 586.09)]
+    [TestCase(2, 586.09, 121.65, 114.32, 7.33, 471.76)]
+    [TestCase(3, 471.76, 121.65, 115.75, 5.9, 356.01)]
+    [TestCase(4, 356.01, 121.65, 117.2, 4.45, 238.81)]
+    [TestCase(5, 238.81, 121.65, 118.66, 2.99, 120.15)]
+    [TestCase(6, 120.15, 121.65, 120.15, 1.5, 0d)]
+    public void GetInstallment_ShouldReturnTheCorrectInformation(int installmentNumber, double principal, double emi,
+        double toPrincipal, double toInterest, double newPrincipal)
     {
-        // Assert
-        Assert.DoesNotThrow(() => _estimate.GetInstallment(1));
-        Assert.DoesNotThrow(() => _estimate.GetInstallment(2));
-        Assert.DoesNotThrow(() => _estimate.GetInstallment(3));
-        Assert.DoesNotThrow(() => _estimate.GetInstallment(4));
-        Assert.DoesNotThrow(() => _estimate.GetInstallment(5));
-        Assert.DoesNotThrow(() => _estimate.GetInstallment(6));
+        var installment = _estimate.GetInstallment(installmentNumber);
+        Assert.That(installment.InstallmentNumber, Is.EqualTo(installmentNumber));
+        Assert.That(installment.Principal, Is.EqualTo(principal).Within(0.009));
+        Assert.That(installment.Payment, Is.EqualTo(emi).Within(0.009));
+        Assert.That(installment.PrincipalPayment, Is.EqualTo(toPrincipal).Within(0.009));
+        Assert.That(installment.InterestPayment, Is.EqualTo(toInterest).Within(0.009));
+        Assert.That(installment.NewPrincipal, Is.EqualTo(newPrincipal).Within(0.009));
     }
-
-    // [Test]
-    // public void Constructor_ThrowsError_WhenParametersAreInvalid()
-    // {
-    //     // Prepare
-    //     var invalidRate = () => { new InstallmentsCalculator(1, -1, 1, 1, 0, Frequency.Weekly); };
-    //     var invalidPrincipal = () => { new InstallmentsCalculator(0, 1, 1, 0, 0, Frequency.Biweekly); };
-    //     var invalidPayment = () => { new InstallmentsCalculator(1, 1, -1, -1, 0, Frequency.Bimonthly); };
-    //     var invalidTerms = () => { new InstallmentsCalculator(1, 1, 1, 0, 0, Frequency.Quarterly); };
-    //     var invalidAdvance = () => { new InstallmentsCalculator(1, 1, 1, 1, -1, Frequency.Quadrimestral); };
-    //     var invalidFrequency = () => { new InstallmentsCalculator(1, 1, 1, 1, 0, (Frequency)12); };
-    //
-    //     // Assert
-    //     Assert.Throws<ArgumentException>("principal", invalidPrincipal);
-    //     Assert.Throws<ArgumentException>("rate", invalidRate);
-    //     Assert.Throws<ArgumentException>("payment", invalidPayment);
-    //     Assert.Throws<ArgumentException>("terms", invalidTerms);
-    //     Assert.Throws<ArgumentOutOfRangeException>("paymentFrequency", invalidFrequency);
-    // }
 }
