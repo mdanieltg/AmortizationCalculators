@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationCalculators.Bus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationCalculators.BusinessLogicTests", "tests\AmortizationCalculators.BusinessLogicTests\AmortizationCalculators.BusinessLogicTests.csproj", "{1C02E531-8D4F-41F2-8729-0579C92D1E42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmortizationCalculators.ConsoleApp", "AmortizationCalculators.ConsoleApp\AmortizationCalculators.ConsoleApp.csproj", "{FD3AEA3B-278D-41F5-973E-71D2D865E97F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1C02E531-8D4F-41F2-8729-0579C92D1E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C02E531-8D4F-41F2-8729-0579C92D1E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C02E531-8D4F-41F2-8729-0579C92D1E42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD3AEA3B-278D-41F5-973E-71D2D865E97F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD3AEA3B-278D-41F5-973E-71D2D865E97F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD3AEA3B-278D-41F5-973E-71D2D865E97F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD3AEA3B-278D-41F5-973E-71D2D865E97F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1C02E531-8D4F-41F2-8729-0579C92D1E42} = {7C9B932B-6C76-4757-ACA4-969598F87785}

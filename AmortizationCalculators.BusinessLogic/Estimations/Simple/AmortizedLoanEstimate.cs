@@ -3,7 +3,7 @@ using AmortizationCalculators.BusinessLogic.Common;
 
 namespace AmortizationCalculators.BusinessLogic.Estimations.Simple;
 
-public class AmortizedLoanEstimate
+public class AmortizedLoanEstimate : IPrintableEstimate
 {
     private readonly Dictionary<int, Installment> _installments = new();
 
@@ -88,4 +88,67 @@ public class AmortizedLoanEstimate
         return _installments[installmentNumber];
     }
 
+    public string GetInformation()
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine($"Estimation date: {EstimationDate:D}");
+        sb.AppendLine();
+
+        sb.Append($"Principal: {Principal,12:C}");
+        sb.AppendLine($"           Rate: {InterestRate,8:P} annual");
+        sb.Append($" Interest: {TotalInterest,12:C}");
+        sb.AppendLine($"          Terms: {Terms,6:N0}");
+        sb.Append($"    Total: {Total,12:C}");
+        sb.Append($"    Installment: {EquatedMonthlyInstallment,8:C}");
+        sb.Append($" {PaymentFrequency.Word().ToLowerInvariant()}");
+
+        return sb.ToString();
+    }
+
+    public string GetTable()
+    {
+        var stringBuilder = new StringBuilder();
+
+        stringBuilder.AppendLine(
+            $@" {"#",-3} | {"Principal",-12} | {"Payment",-12} | {"To Principal",-12} | {"To Interest",-12} | {"New Principal",-13}");
+        stringBuilder.AppendLine(" --- | ------------ | ------------ | ------------ | ------------ | ------------- ");
+
+        var i = 1;
+        while (i <= Terms)
+        {
+            var installment = GetInstallment(i);
+            var line = string.Format(" {0,3} | {1,12:C} | {2,12:C} | {3,12:C} | {4,12:C} | {5,13:C}",
+                installment.InstallmentNumber,
+                installment.Principal,
+                installment.Payment,
+                installment.PrincipalPayment,
+                installment.InterestPayment,
+                installment.NewPrincipal);
+
+            stringBuilder.AppendFormat(line);
+
+            if (i < Terms)
+                stringBuilder.AppendLine();
+
+            ++i;
+        }
+
+        return stringBuilder.ToString();
+    }
+
+    public void PrintEstimate(TextWriter output)
+    {
+        output.WriteLine(GetInformation());
+        output.WriteLine();
+        output.WriteLine(GetTable());
+        output.WriteLine();
+    }
+
+    public async Task PrintEstimateAsync(TextWriter output)
+    {
+        await output.WriteLineAsync(GetInformation());
+        await output.WriteLineAsync();
+        await output.WriteLineAsync(GetTable());
+    }
 }
